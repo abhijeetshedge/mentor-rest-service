@@ -1,6 +1,7 @@
 package com.mentor.model;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -8,7 +9,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.mongodb.lang.NonNull;
 
-@Document(collection = "Mentor")
+@Document(collection = "mentorDetails")
 public class Mentor {
 	
 	@NonNull
@@ -16,15 +17,20 @@ public class Mentor {
 	private int employeeId;
 	private String firstName;
 	private String lastName;
+	
+	@Indexed(unique=true)
 	private String email;
 	private String password;
 	private String jobTitle;
+	private String gender;
 	private String company;
+	private String location;
 	private Category category;
 	private List<Skill> skills;
 	private String bio;
 	private LocalDateTime createdAt;
 	private boolean isActive;
+	private byte[] image;
 	
 	public Mentor() {
 		super();
@@ -32,8 +38,8 @@ public class Mentor {
 	}
 
 	public Mentor(int employeeId, String firstName, String lastName, String email, String password, String jobTitle,
-			String company, Category category, List<Skill> skills, String bio, LocalDateTime createdAt,
-			boolean isActive) {
+			String gender, String company, String location, Category category, List<Skill> skills, String bio,
+			LocalDateTime createdAt, boolean isActive, byte[] image) {
 		super();
 		this.employeeId = employeeId;
 		this.firstName = firstName;
@@ -41,12 +47,15 @@ public class Mentor {
 		this.email = email;
 		this.password = password;
 		this.jobTitle = jobTitle;
+		this.gender = gender;
 		this.company = company;
+		this.location = location;
 		this.category = category;
 		this.skills = skills;
 		this.bio = bio;
 		this.createdAt = createdAt;
 		this.isActive = isActive;
+		this.image = image;
 	}
 
 	public int getEmployeeId() {
@@ -97,12 +106,28 @@ public class Mentor {
 		this.jobTitle = jobTitle;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public String getCompany() {
 		return company;
 	}
 
 	public void setCompany(String company) {
 		this.company = company;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	public Category getCategory() {
@@ -145,18 +170,21 @@ public class Mentor {
 		this.isActive = isActive;
 	}
 
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
 	@Override
 	public String toString() {
 		return "Mentor [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName + ", email="
-				+ email + ", password=" + password + ", jobTitle=" + jobTitle + ", company=" + company + ", category="
-				+ category + ", skills=" + skills + ", bio=" + bio + ", createdAt=" + createdAt + ", isActive="
-				+ isActive + "]";
+				+ email + ", password=" + password + ", jobTitle=" + jobTitle + ", gender=" + gender + ", company="
+				+ company + ", location=" + location + ", category=" + category + ", skills=" + skills + ", bio=" + bio
+				+ ", createdAt=" + createdAt + ", isActive=" + isActive + ", image=" + Arrays.toString(image) + "]";
 	}
-	
-	
-	
-	
-	
 	
 	
 	

@@ -6,4 +6,6 @@ import com.mentor.model.Mentor;
 
 public interface MentorRepository extends MongoRepository<Mentor, Integer> {
 
+	Mentor findByEmployeeId(int username);
+
 }
